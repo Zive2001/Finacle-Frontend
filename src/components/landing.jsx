@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { motion, useAnimation } from 'framer-motion'; // Import useAnimation for scroll-based animation
-import { useInView } from 'react-intersection-observer'; // Import useInView for scroll detection
+import { motion, useAnimation } from 'framer-motion'; 
+import { useInView } from 'react-intersection-observer'; 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,8 +15,8 @@ import caroselitem1 from '../assets/caroselitem1.svg';
 
 const LandingPage = () => {
   const targetRef = useRef(null);
-  const controls = useAnimation(); // Initialize animation controls
-  const [ref, inView] = useInView({ threshold: 0.1 }); // Observe the hero section
+  const controls = useAnimation(); 
+  const [ref, inView] = useInView({ threshold: 0.1 }); 
 
   useEffect(() => {
     if (inView) {
@@ -51,6 +51,37 @@ const LandingPage = () => {
     cssEase: 'ease-in-out',
   };
 
+  const letterAnimation = {
+    initial: { color: '#000' },
+    animate: (i) => ({
+      color: ['#000', '#c1121f', '#000'], 
+      transition: {
+        delay: i * 0.1,
+        duration: 0.6,
+        repeat: Infinity,
+        repeatDelay: 10,
+        ease: 'easeInOut',
+      },
+    }),
+  };
+
+  const dotsAnimation = {
+    initial: { opacity: 0, y: 0 },
+    animate: {
+      opacity: 1,
+      y: [0, -5, 0], 
+      transition: {
+        delay: 2.8, 
+        duration: 3,
+        repeat: Infinity,
+        repeatDelay: 7,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
+  const welcomeText = "Welcome to The Finacle Website";
+
   return (
     <motion.div
       className="font-sans bg-gray-50 min-h-screen relative"
@@ -58,7 +89,6 @@ const LandingPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {/* Header logos with motion */}
       <motion.img
         src={bodyline2}
         alt="Bodyline Logo"
@@ -76,12 +106,11 @@ const LandingPage = () => {
         transition={{ duration: 1, delay: 0.5 }}
       />
 
-      {/* Hero Section with scroll-triggered animation */}
       <motion.section
         className="flex flex-col items-center justify-center min-h-screen bg-white"
-        ref={ref} // Attach the ref for scroll detection
-        animate={controls} // Use controls for animation
-        initial={{ y: 0, opacity: 1 }} // Initial state before animation
+        ref={ref} 
+        animate={controls} 
+        initial={{ y: 0, opacity: 1 }} 
       >
         <motion.img
           src={logofinacle2}
@@ -92,12 +121,33 @@ const LandingPage = () => {
           transition={{ duration: 1, delay: 1 }}
         />
         <motion.h1
-          className="text-5xl font-bold text-gray-800 mb-4"
+          className="text-5xl font-bold text-gray-800 mb-4 flex items-center"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
         >
-          Welcome to The Finacle Website
+          {welcomeText.split("").map((char, index) => (
+            <motion.span
+              key={index}
+              custom={index}
+              initial="initial"
+              animate="animate"
+              variants={letterAnimation}
+              className="inline-block"
+            >
+              {char === " " ? "\u00A0" : char} {/* Maintain spaces */}
+            </motion.span>
+          ))}
+          <motion.span
+            className="ml-2 flex"
+            initial="initial"
+            animate="animate"
+            variants={dotsAnimation}
+          >
+            <span className="inline-block">.</span>
+            <span className="inline-block">.</span>
+            <span className="inline-block">.</span>
+          </motion.span>
         </motion.h1>
         <motion.p
           className="text-lg text-gray-600 mb-8 font-semibold"
@@ -109,18 +159,17 @@ const LandingPage = () => {
         </motion.p>
         <motion.button
           onClick={handleScroll}
-          className="bg-[#023047] hover:bg-[#253a47] text-white font-bold py-3 px-6 rounded-full"
+          className="bg-[#023047] hover:bg-[#285571] text-white font-bold py-3 px-6 rounded-full"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.6 }}
+          transition={{ duration: 1, delay: 1.7 }}
         >
           Get Started
         </motion.button>
       </motion.section>
 
-      {/* Gallery Slideshow Section */}
       <motion.section
         className="p-10 bg-gray-100"
         initial={{ opacity: 0 }}
@@ -154,7 +203,6 @@ const LandingPage = () => {
         </div>
       </motion.section>
 
-      {/* Button Image Gallery with Smooth Scroll Links */}
       <section
         ref={targetRef}
         className="grid grid-cols-1 md:grid-cols-3 gap-6 p-10 bg-gray-100"
@@ -192,7 +240,7 @@ const LandingPage = () => {
         </Link>
 
         <Link
-          to="contact"
+          to="contactus"
           smooth={true}
           duration={1000}
           className="cursor-pointer transform transition duration-500 hover:scale-105"
