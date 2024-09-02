@@ -1,8 +1,12 @@
 import React from 'react';
 import logofinacle2 from '../assets/logofinacle2.svg';
 
-const Header = () => (
-  <header className="flex justify-between items-center p-6 bg-white shadow-md">
+const Header = ({ darkMode }) => (
+  <header
+    className={`flex justify-between items-center p-6 shadow-md transition-colors duration-500 ${
+      darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
+    }`}
+  >
     {/* Logo on the left */}
     <div className="flex items-center">
       <img

@@ -10,6 +10,12 @@ import { Element } from 'react-scroll'; // Import Element for smooth scrolling
 const App = () => {
   // State to track whether the header should be visible
   const [showHeader, setShowHeader] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Function to toggle dark mode
+  const toggleDarkMode = () => {
+    setDarkMode((prevDarkMode) => !prevDarkMode);
+  };
 
   // Effect to handle scroll position
   useEffect(() => {
@@ -32,17 +38,17 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-800'} transition-colors duration-500`}>
       {/* Conditionally render Header based on scroll position */}
       {showHeader && (
         <div className="fixed top-0 left-0 w-full z-50">
-          <Header />
+          <Header darkMode={darkMode} /> {/* Pass darkMode prop here */}
         </div>
       )}
 
       <main className="container mx-auto">
-        {/* Landing Page Section */}
-        <LandingPage />
+        {/* Landing Page Section with darkMode and toggleDarkMode props */}
+        <LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
         {/* Sections for smooth scrolling */}
         <Element name="services" className="mt-10">
