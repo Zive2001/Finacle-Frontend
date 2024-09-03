@@ -19,7 +19,7 @@ const Header = ({ darkMode }) => (
 
     {/* Navigation items on the right */}
     <nav>
-      <ul className="flex space-x-6">
+      <ul className="flex space-x-6 font-semibold">
         <li className="hover:text-gray-600 cursor-pointer">Our Services</li>
         <li className="hover:text-gray-600 cursor-pointer">E-Learnings</li>
         <li className="hover:text-gray-600 cursor-pointer">Contact Us</li>

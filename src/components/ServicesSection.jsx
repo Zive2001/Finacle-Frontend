@@ -14,7 +14,7 @@ const ServicesSection = () => (
     <div className="grid grid-cols-4 gap-4">
       {/* Repeat ServiceCard component for each service */}
       <ServiceCard title="Letter Requests" description=" Ensuring swift processing and efficient communication for all financial correspondences." image={lettericon} />
-      <ServiceCard title="Foreign Travel Desk" description="Navigate seamlessly through our Foreign Travel Desk, facilitating hassle-free applications" image={foreignicon2} />
+      <ServiceCard title="Foreign Travel Desk" description="Navigate seamlessly through our Foreign Travel Desk, facilitating hassle-free applications" image={foreignicon2}/>
       <ServiceCard title="CAPEX Requests" description="Description of service 3" image={capexicon} />
       <ServiceCard title="Cash Advance Requests" description="Description of service 3" image={cashadicon} />
       <ServiceCard title="Development Requests" description="Description of service 3" image={devicon} />
