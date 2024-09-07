@@ -32,7 +32,7 @@ const LandingPage = ({ darkMode, toggleDarkMode }) => {
     const targetPosition = targetRef.current.getBoundingClientRect().top + window.scrollY;
     const startPosition = window.scrollY;
     const distance = targetPosition - startPosition;
-    const duration = 1000; // Duration in milliseconds
+    const duration = 1000;
     let start = null;
   
     const step = (timestamp) => {
