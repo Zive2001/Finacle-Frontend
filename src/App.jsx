@@ -47,7 +47,7 @@ const App = () => {
       )}
 
       <main className="container mx-auto">
-        {/* Landing Page Section with darkMode and toggleDarkMode props */}
+      
         <LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
         {/* Sections for smooth scrolling */}
